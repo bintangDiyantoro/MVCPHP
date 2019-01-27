@@ -1,24 +1,21 @@
 <?php 
 
 class Scholar_model{
-    private $dbh; //database handler
-    private $stmt; //statement
+    private $table = 'scholars';
+    private $db;
 
     public function __construct(){
-        //data source name
-        $dsn = 'mysql:host=localhost;dbname=phpmvc';
-
-        try {
-            $this->dbh = new PDO($dsn, 'najmuddin','stonehe4ded');
-        }
-        catch(PDOException $e){
-            die($e->getMessage());
-        }
+        $this->db = new Database;
     }
 
     public function getAllSch(){
-        $this->stmt = $this->dbh->prepare('SELECT * FROM scholars');
-        $this->stmt->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        $this->db->query('SELECT * FROM '. $this->table);
+        return $this->db->resultSet();
+    }
+
+    public function getSchById($id){
+        $this->db->query('SELECT * FROM '. $this->table.' WHERE id=:id');
+        $this->db->bind('id',$id);
+        return $this->db->single();
     }
 }
