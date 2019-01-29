@@ -18,4 +18,18 @@ class Scholar_model{
         $this->db->bind('id',$id);
         return $this->db->single();
     }
+
+    public function insertScholar($data){
+        $query = 'INSERT INTO '.$this->table.' (name, nis, email, department) VALUES(:name, :nis, :email, :department)';
+        
+        $this->db->query($query);
+        $this->db->bind('name', $data['name']);
+        $this->db->bind('nis', $data['nis']);
+        $this->db->bind('email', $data['email']);
+        $this->db->bind('department', $data['department']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
