@@ -16,4 +16,11 @@ class Scholar extends Controller{
         $this->view('scholar/detail', $data);
         $this->view('templates/footer');
     }
+
+    public function insert(){
+        if($this->model('Scholar_model')->insertScholar($_POST)>0){
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+    }
 }
