@@ -19,6 +19,12 @@ class Scholar extends Controller{
 
     public function insert(){
         if($this->model('Scholar_model')->insertScholar($_POST)>0){
+            Flasher::setFlash('successfully','added','success');
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+        else{
+            Flasher::setFlash('failed','to be added','danger');
             header('Location: '.BASEURL.'/scholar');
             exit;
         }
