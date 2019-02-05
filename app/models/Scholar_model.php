@@ -32,4 +32,12 @@ class Scholar_model{
 
         return $this->db->rowCount();
     }
+
+    public function deleteScholar($id){
+        $query = 'DELETE FROM '.$this->table.' WHERE id=:id';
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }
