@@ -29,4 +29,17 @@ class Scholar extends Controller{
             exit;
         }
     }
+
+    public function delete($id){
+        if($this->model('Scholar_model')->deleteScholar($id)>0){
+            Flasher::setFlash('successfully','deleted','success');
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+        else{
+            Flasher::setFlash('failed','to delete','danger');
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+    }
 }
