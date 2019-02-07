@@ -42,4 +42,21 @@ class Scholar extends Controller{
             exit;
         }
     }
+
+    public function getUpdate(){
+        echo json_encode($this->model('Scholar_model')->getSchById($_POST['id']));
+    }
+
+    public function update(){
+        if($this->model('Scholar_model')->updateScholar($_POST)>0){
+            Flasher::setFlash('successfully','updated','success');
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+        else{
+            Flasher::setFlash('failed','to be updated','danger');
+            header('Location: '.BASEURL.'/scholar');
+            exit;
+        }
+    }
 }
