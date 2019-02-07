@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+        <button type="button" class="btn btn-primary showAddModal" data-toggle="modal" data-target="#formModal">
             Add Scholar
         </button><br><br>
         <h3>Scholar list</h3>
@@ -15,6 +15,7 @@
             <li class="list-group-item list-group-item-action">                
                 <?= $sch['name']; ?>
                 <a href="<?= BASEURL; ?>/scholar/delete/<?= $sch['id']; ?>" class="badge badge-danger float-right ml-2" onclick="return confirm('Are you sure want to delete '+'<?= $sch['name']; ?>'+'?')">delete</a>
+                <a href="<?= BASEURL; ?>/scholar/edit/<?= $sch['id']; ?>" class="badge badge-success float-right ml-2 showEditModal" data-toggle="modal" data-target="#formModal" data-id="<?= $sch['id']; ?>">edit</a>
                 <a href="<?= BASEURL; ?>/scholar/detail/<?= $sch['id']; ?>" class="badge badge-info float-right ml-2">detail</a>
             </li>
             <?php endforeach; ?>
@@ -34,6 +35,7 @@
       </div>
       <div class="modal-body">
         <form action="<?= BASEURL; ?>/scholar/insert" method="post">
+            <input type="hidden" name="id" id="id">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
