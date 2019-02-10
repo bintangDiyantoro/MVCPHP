@@ -59,4 +59,11 @@ class Scholar extends Controller{
             exit;
         }
     }
+    public function search(){
+        $data['title'] =  'Scholar list';
+        $data['scholar'] = $this->model('Scholar_model')->searchSchData();
+        $this->view('templates/header', $data);
+        $this->view('scholar/index', $data);
+        $this->view('templates/footer');
+    }
 }

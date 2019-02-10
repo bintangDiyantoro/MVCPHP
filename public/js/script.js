@@ -10,11 +10,11 @@ $(function(){
 
         const id = $(this).data('id');
         $.ajax({
-            url: 'http://localhost/scholar/getUpdate',
-            data: {id:id},
-            method: 'post',
+            url     : 'http://localhost/scholar/getUpdate',
+            data    : {id:id},
+            method  : 'post',
             dataType: 'json',
-            success: function(data){
+            success : function(data){
                 $('#id').val(data.id);
                 $('#name').val(data.name);
                 $('#nis').val(data.nis);
