@@ -27,9 +27,7 @@ class Scholar_model{
         $this->db->bind('nis', $data['nis']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('department', $data['department']);
-
         $this->db->execute();
-
         return $this->db->rowCount();
     }
 
@@ -43,16 +41,20 @@ class Scholar_model{
 
     public function updateScholar($data){
         $query = 'UPDATE '.$this->table.' SET name= :name, nis= :nis, email= :email, department= :department WHERE id= :id';
-        
         $this->db->query($query);
         $this->db->bind('id', $data['id']);
         $this->db->bind('name', $data['name']);
         $this->db->bind('nis', $data['nis']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('department', $data['department']);
-
         $this->db->execute();
-
         return $this->db->rowCount();
+    }
+    public function searchSchData(){
+        $keyword = $_POST['keyword'];
+        $query = 'SELECT * FROM '.$this->table.' WHERE name LIKE :keyword';
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultSet();
     }
 }
